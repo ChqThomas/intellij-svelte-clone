@@ -1,66 +1,21 @@
 <script>
+	import { createQuery } from '@tanstack/svelte-query';
 	import Folder from './Folder.svelte';
+	import { getFormattedTree } from '../../services/github';
 
-	export let items = [
-		{
-			name: 'File 3',
-			type: 'file'
-		},
-		{
-			name: 'File 1',
-			type: 'file'
-		},
-		{
-			name: 'Folder 3',
-			type: 'folder',
-			items: [
-				{
-					name: 'caca 2',
-					type: 'file'
-				},
-				{
-					name: 'pipi 2',
-					type: 'file'
-				}
-			]
-		},
-		{
-			name: 'File 2',
-			type: 'file'
-		},
-		{
-			name: 'Folder 1',
-			type: 'folder',
-			items: [
-				{
-					name: 'caca',
-					type: 'file'
-				},
-				{
-					name: 'pipi',
-					type: 'file'
-				},
-				{
-					name: 'Folder 2',
-					type: 'folder',
-					items: [
-						{
-							name: 'caca 2',
-							type: 'file'
-						},
-						{
-							name: 'pipi 2',
-							type: 'file'
-						}
-					]
-				}
-			]
-		}
-	];
-
-	console.log(items);
+	const query = createQuery({
+		queryKey: ['repoData'],
+		queryFn: getFormattedTree,
+		retry: false
+	});
 </script>
 
 <div class="bg-g text-white p-2 h-full w-full select-none">
-	<Folder opened={true} name="project" {items} />
+	{#if $query.isLoading}
+		<p>Loading...</p>
+	{:else if $query.isError}
+		<p>Error while loading repository content</p>
+	{:else if $query.isSuccess}
+		<Folder opened={true} name="project" items={$query.data} />
+	{/if}
 </div>

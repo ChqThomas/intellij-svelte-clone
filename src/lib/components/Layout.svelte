@@ -7,8 +7,6 @@
 	import FileTree from './filetree/FileTree.svelte';
 
 	let fileTreeWidth = 500;
-	export let files = [];
-
 	function move(element) {
 		return {
 			destroy() {}
@@ -36,9 +34,6 @@
 		function onMousedown(event) {
 			active = event.target;
 			const rect = element.getBoundingClientRect();
-			const parent = element.parentElement.getBoundingClientRect();
-
-			console.log({ rect, parent });
 
 			initialRect = {
 				width: rect.width
@@ -89,7 +84,7 @@
 	<div class="flex flex-1">
 		<LeftBar />
 		<div class="flex" style="width: {fileTreeWidth}px" use:move use:resize>
-			<FileTree items={files} />
+			<FileTree />
 		</div>
 		<div class="flex-1">
 			<Editor />

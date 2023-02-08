@@ -1,17 +1,19 @@
-<script>
+<script lang="ts">
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-	import { activeFileTreeItem } from '../../stores/states.ts';
+	import { activeFileTreeItem, openedFile } from '../../stores/states.ts';
+	import type { TreeItem } from '../../services/github.js';
 
-	export let name = '';
+	export let item: TreeItem;
 </script>
 
 <div
 	class="w-full"
-	class:active={$activeFileTreeItem === name}
-	on:click|preventDefault|stopPropagation={() => ($activeFileTreeItem = name)}
+	class:active={$activeFileTreeItem === item.name}
+	on:click|preventDefault|stopPropagation={() => ($activeFileTreeItem = item.path)}
+	on:dblclick|preventDefault|stopPropagation={() => ($openedFile = item.path)}
 >
 	<FontAwesomeIcon icon="far fa-file" />
-	{name}
+	{item.name}
 </div>
 
 <style>

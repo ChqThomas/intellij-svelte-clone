@@ -1,10 +1,11 @@
-<script>
+<script lang="ts">
 	import File from './File.svelte';
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import { activeFileTreeItem } from '$stores/states.ts';
+	import type { TreeItem } from '../../services/github';
 
 	export let name = '';
-	export let items = [];
+	export let items: TreeItem[] = [];
 	export let opened = true;
 
 	items.sort(function (a, b) {
@@ -34,11 +35,11 @@
 	</div>
 	{#if opened}
 		<div class="pl-3 ml-3 border-l-2 border-lg">
-			{#each items as item}
+			{#each items as item (item.path)}
 				{#if item.type === 'folder'}
 					<svelte:self opened={false} name={item.name} items={item.items} />
 				{:else if item.type === 'file'}
-					<File name={item.name} />
+					<File {item} />
 				{/if}
 			{/each}
 		</div>

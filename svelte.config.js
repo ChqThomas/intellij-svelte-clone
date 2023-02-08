@@ -1,5 +1,5 @@
 import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import path from 'path';
 
@@ -19,7 +19,8 @@ const config = {
 		alias: {
 			'@Components': 'src/lib/components',
 			$components: path.resolve('./src/lib/components'),
-			$stores: path.resolve('./src/lib/stores')
+			$stores: path.resolve('./src/lib/stores'),
+			'node-fetch': 'isomorphic-fetch'
 		}
 	}
 };

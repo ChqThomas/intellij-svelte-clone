@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+	import { QueryClientProvider } from '@tanstack/svelte-query';
+	import type { PageData } from './$types';
 	import '../app.postcss';
 	import { config, library } from '@fortawesome/fontawesome-svg-core';
 
@@ -10,6 +12,10 @@
 
 	import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 	config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
+
+	export let data: PageData;
 </script>
 
-<slot />
+<QueryClientProvider client={data.queryClient}>
+	<slot />
+</QueryClientProvider>
