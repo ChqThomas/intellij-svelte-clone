@@ -3,6 +3,8 @@
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import { activeFileTreeItem } from '$stores/states.ts';
 	import type { TreeItem } from '../../services/github';
+	import { faAngleDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+	import { faFolder } from '@fortawesome/free-regular-svg-icons';
 
 	export let name = '';
 	export let items: TreeItem[] = [];
@@ -25,12 +27,12 @@
 	>
 		<span class="mr-1" on:click|preventDefault|stopPropagation={() => (opened = !opened)}>
 			{#if opened}
-				<FontAwesomeIcon icon={'angle-down'} size="xs" />
+				<FontAwesomeIcon icon={faAngleDown} size="xs" />
 			{:else}
-				<FontAwesomeIcon icon={'angle-right'} size="xs" />
+				<FontAwesomeIcon icon={faAngleRight} size="xs" />
 			{/if}
 		</span>
-		<FontAwesomeIcon icon="far fa-folder" />
+		<FontAwesomeIcon icon={faFolder} />
 		{name}
 	</div>
 	{#if opened}
