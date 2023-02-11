@@ -9,6 +9,7 @@
 		'json',
 		'md',
 		'png',
+		'svg',
 		'npmrc',
 		'postcss',
 		'prettier',

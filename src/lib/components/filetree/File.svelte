@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="w-full flex items-center gap-1"
+	class="ml-4 w-full flex items-center gap-1"
 	class:active={$activeFileTreeItem === item.path}
 	on:click|preventDefault|stopPropagation={() => ($activeFileTreeItem = item.path)}
 	on:dblclick|preventDefault|stopPropagation={() => ($openedFile = item.path)}
