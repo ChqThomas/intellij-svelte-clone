@@ -1,22 +1,32 @@
 <script lang="ts">
 	import { createQuery } from '@tanstack/svelte-query';
-	import { getContent } from '../../services/github';
+	import { getContent, getContentUrl } from '../../services/github';
 	import { openedFile } from '../../stores/states';
 
 	let query;
+	let image: string | null = null;
 
 	$: {
 		if ($openedFile) {
-			query = createQuery({
-				queryKey: ['content', $openedFile],
-				queryFn: () => getContent($openedFile)
-			});
+			if ($openedFile.endsWith('.png')) {
+				image = getContentUrl($openedFile);
+			} else {
+				image = null;
+				query = createQuery({
+					queryKey: ['content', $openedFile],
+					queryFn: () => getContent($openedFile)
+				});
+			}
 		}
 	}
 </script>
 
-<div class="bg-dg h-full text-white p-2">
-	{#if $openedFile}
+<div class="h-full text-white p-2 whitespace-pre">
+	{#if image}
+		<div class="h-full flex items-center justify-center">
+			<img src={image} alt="" />
+		</div>
+	{:else if $openedFile}
 		{#if $query.isLoading}
 			<p>Loading...</p>
 		{:else if $query.isError}

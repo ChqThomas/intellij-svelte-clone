@@ -50,11 +50,15 @@ export async function getContent(path: string) {
 	const cacheKey = `file_${path}`;
 	let fileContent = getFromLocalstorage(cacheKey, false) as string;
 	if (fileContent === null) {
-		const res = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/master/${path}`);
+		const res = await fetch(getContentUrl(path));
 		fileContent = await res.text();
 		saveToLocalstorage(cacheKey, fileContent, false);
 	}
 	return fileContent;
+}
+
+export function getContentUrl(path: string) {
+	return `https://raw.githubusercontent.com/${owner}/${repo}/master/${path}`;
 }
 
 function insert(items: TreeItem[] = [], path: string, absolutePath: string) {
