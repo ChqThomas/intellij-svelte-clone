@@ -1,5 +1,5 @@
-const owner = 'ChqThomas';
-const repo = 'intellij-svelte-clone';
+const owner = import.meta.env.VITE_GITHUB_USERNAME;
+const repo = import.meta.env.VITE_GITHUB_REPO;
 
 export type GithubTreeItem = {
 	path: string;

@@ -2,7 +2,7 @@
 	import { openedFile } from '../../stores/states';
 	import FileIcon from '../ui/FileIcon.svelte';
 
-	$: path = ['intellij-svelte-clone', ...$openedFile.split('/')];
+	$: path = [import.meta.env.VITE_GITHUB_REPO, ...$openedFile.split('/')];
 </script>
 
 <div id="breadcrumb" class="flex items-center h-[32px] px-2">

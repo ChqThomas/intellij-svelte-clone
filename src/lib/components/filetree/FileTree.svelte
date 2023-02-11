@@ -16,6 +16,6 @@
 	{:else if $query.isError}
 		<p>Error while loading repository content</p>
 	{:else if $query.isSuccess}
-		<Folder opened={true} name="intellij-svelte-clone" items={$query.data} />
+		<Folder opened={true} name={import.meta.env.VITE_GITHUB_REPO} items={$query.data} />
 	{/if}
 </div>

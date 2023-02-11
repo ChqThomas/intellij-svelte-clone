@@ -41,7 +41,7 @@
 </script>
 
 {#if icon}
-	<img src="icons/{icon}.svg" alt="" />
+	<img width="16px" height="16px" src="icons/{icon}.svg" alt={icon} />
 {:else}
 	<FontAwesomeIcon icon="far fa-file" />
 {/if}

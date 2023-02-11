@@ -1,4 +1,4 @@
-# intellij-svelte-clone
+# webstorm-svelte-clone
 
 ## Work in progress
 

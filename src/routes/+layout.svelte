@@ -10,6 +10,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>{import.meta.env.VITE_GITHUB_REPO}</title>
+</svelte:head>
+
 <QueryClientProvider client={data.queryClient}>
 	<slot />
 </QueryClientProvider>

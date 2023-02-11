@@ -13,7 +13,7 @@
 
 <header id="topbar" class="flex items-center h-[42px] bg-g border-b-2 border-lg box-content">
 	<Icon icon={faBars} />
-	<Dropdown text="sveltestorm" />
+	<Dropdown text={import.meta.env.VITE_GITHUB_REPO} />
 	<Dropdown text="Version control" />
 	<div class="flex-1" />
 	<Icon icon={faBug} />
