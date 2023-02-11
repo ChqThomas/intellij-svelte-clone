@@ -1,28 +1,41 @@
-# create-svelte
+# intellij-svelte-clone
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Work in progress
 
-## Creating a project
+## Todo
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- [ ] Complete the TODO
+- UI
+  - [ ] Dark and light theme
+- Menu
+  - [ ] Right click menu
+- File tree
+  - [x] Folder and files architecture
+  - [x] Open/Close folder on click
+  - [x] Open file on dblclick
+  - [x] File icons
+  - [x] Resizable
+- Editor
+  - [x] Load file content
+  - [ ] Code Editor (readonly)
+  - [ ] Tabs
+  - Image Editor
+    - [x] Display centered Image
+    - Toolbar
+      - [ ] Show chessboard
+      - [ ] Show grid
+      - [ ] Zoom in/out/reset/fit
+      - [ ] Color picker
+- Breadcrumb
+  - [ ] Display opened file path
+  - [ ] Clickable folders
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
 ## Building
@@ -34,5 +47,3 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
