@@ -7,15 +7,6 @@
 </div>
 
 <style>
-	.tooltip {
-		border: 1px solid #ddd;
-		box-shadow: 1px 1px 1px #ddd;
-		background: white;
-		border-radius: 4px;
-		padding: 4px;
-		position: absolute;
-		color: black;
-	}
 	/*This would all go into the global.css file*/
 	[data-tooltip] {
 		position: relative;
@@ -28,7 +19,6 @@
 		visibility: hidden;
 		opacity: 0;
 		pointer-events: none;
-		transition: 0.2s ease-out;
 		transform: translate(-50%, 5px);
 	}
 
@@ -45,14 +35,12 @@
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
 		border-radius: 3px;
-		background-color: #000;
-		background-color: hsla(0, 0%, 20%, 0.9);
+		background-color: #4e5157;
 		color: #fff;
 		content: attr(data-tooltip);
 		text-align: center;
 		font-size: 14px;
 		line-height: 1.2;
-		transition: 0.2s ease-out;
 	}
 
 	[data-tooltip]:after {

@@ -2,7 +2,7 @@
 	import FilePath from './FilePath.svelte';
 </script>
 
-<footer class="flex h-[32px]">
+<footer class="flex items-center h-[32px] border-t-2 border-lg box-content">
 	<FilePath />
 </footer>
 

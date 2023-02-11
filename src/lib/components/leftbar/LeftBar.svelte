@@ -3,7 +3,7 @@
 	import Tooltip from '../ui/Tooltip.svelte';
 </script>
 
-<div id="left-bar" class="flex flex-col h-full w-[32px] border-r-2 border-lg">
+<div id="left-bar" class="flex flex-col h-full w-[42px] border-r-2 border-lg box-content">
 	<Tooltip title="Coucou">
 		<RoundedIcon icon={'far fa-folder'} />
 	</Tooltip>

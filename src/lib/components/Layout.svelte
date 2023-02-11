@@ -79,14 +79,14 @@
 	let grabber = true;
 </script>
 
-<div class="flex flex-col h-screen w-screen">
+<div class="flex flex-col h-screen w-screen border-box overflow-hidden">
 	<TopBar />
-	<div class="flex flex-1">
+	<div class="flex flex-1 h-full bg-g min-h-0">
 		<LeftBar />
-		<div class="flex" style="width: {fileTreeWidth}px" use:move use:resize>
+		<div class="flex overflow-y-auto h-full" style="width: {fileTreeWidth}px" use:move use:resize>
 			<FileTree />
 		</div>
-		<div class="flex-1">
+		<div class="flex-1 overflow-y-auto h-full bg-dg">
 			<Editor />
 		</div>
 		<RightBar />

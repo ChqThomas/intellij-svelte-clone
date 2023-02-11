@@ -23,4 +23,15 @@
 </div>
 
 <style>
+	#breadcrumb {
+		color: #aeaeae;
+	}
+
+	.blue-square {
+		width: 8px;
+		height: 8px;
+		border: 1px solid #4f80e3;
+		margin-right: 5px;
+		border-radius: 2px;
+	}
 </style>

@@ -1,4 +1,4 @@
-<div id="right-bar" class="h-full w-[32px]" />
+<div id="right-bar" class="h-full w-[32px] border-l-2 border-lg box-content" />
 
 <style>
 	#right-bar {
