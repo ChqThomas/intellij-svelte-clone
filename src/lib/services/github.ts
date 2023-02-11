@@ -27,19 +27,34 @@ export async function getTree(): Promise<GithubTreeItem[]> {
 }
 
 export async function getFormattedTree(): Promise<TreeItem[]> {
-	const tree = await getTree();
-	const files = tree
-		.filter((t) => t.type === 'blob')
-		.map((f) => {
-			return f.path;
-		});
+	const cacheKey = 'tree';
 
-	return files.reduce((items: TreeItem[], path) => insert(items, path, path), []);
+	let treeItems = getFromLocalstorage(cacheKey, true) as TreeItem[];
+
+	if (treeItems === null) {
+		const tree = await getTree();
+		const files = tree
+			.filter((t) => t.type === 'blob')
+			.map((f) => {
+				return f.path;
+			});
+
+		treeItems = files.reduce((items: TreeItem[], path) => insert(items, path, path), []);
+		saveToLocalstorage(cacheKey, treeItems, true);
+	}
+
+	return treeItems;
 }
 
 export async function getContent(path: string) {
-	const res = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/master/${path}`);
-	return await res.text();
+	const cacheKey = `file_${path}`;
+	let fileContent = getFromLocalstorage(cacheKey, false) as string;
+	if (fileContent === null) {
+		const res = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/master/${path}`);
+		fileContent = await res.text();
+		saveToLocalstorage(cacheKey, fileContent, false);
+	}
+	return fileContent;
 }
 
 function insert(items: TreeItem[] = [], path: string, absolutePath: string) {
@@ -53,4 +68,25 @@ function insert(items: TreeItem[] = [], path: string, absolutePath: string) {
 		insert(child.items, tail.join('/'), absolutePath);
 	}
 	return items;
+}
+
+function getCacheKey(key: string) {
+	return `${key}_${import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA}`;
+}
+
+function saveToLocalstorage(key: string, data: any, json: boolean) {
+	if (json) {
+		data = JSON.stringify(data);
+	}
+	window.localStorage.setItem(getCacheKey(key), data);
+}
+function getFromLocalstorage(key: string, json: boolean): string | object | null {
+	let data = window.localStorage.getItem(getCacheKey(key));
+	if (data) {
+		if (json) {
+			data = JSON.parse(data);
+		}
+		return data;
+	}
+	return null;
 }
