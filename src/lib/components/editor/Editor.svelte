@@ -6,13 +6,19 @@
 
 	let query;
 	let image: string | null = null;
+	let filetype = null;
 
 	$: {
 		if ($openedFile) {
 			if ($openedFile.endsWith('.png')) {
 				image = getContentUrl($openedFile);
+				filetype = 'image';
 			} else {
-				image = null;
+				if ($openedFile.endsWith('.svg')) {
+					filetype = 'svg';
+				} else {
+					filetype = 'text';
+				}
 				query = createQuery({
 					queryKey: ['content', $openedFile],
 					queryFn: () => getContent($openedFile)
@@ -26,8 +32,8 @@
 	<div>
 		<Tabs />
 	</div>
-	<div class="whitespace-pre p-2 ">
-		{#if image}
+	<div class="h-full overflow-y-auto whitespace-pre p-2 ">
+		{#if filetype === 'image'}
 			<div class="h-full flex items-center justify-center">
 				<img src={image} alt="" />
 			</div>
@@ -37,8 +43,21 @@
 			{:else if $query.isError}
 				<p>Error: {$query.error.message}</p>
 			{:else if $query.isSuccess}
-				{$query.data}
+				{#if filetype === 'svg'}
+					<div class="svg-container h-full flex items-center justify-center">
+						{@html $query.data}
+					</div>
+				{:else}
+					{$query.data}
+				{/if}
 			{/if}
 		{/if}
 	</div>
 </div>
+
+<style>
+	:global(.svg-container > svg) {
+		width: 128px;
+		height: 128px;
+	}
+</style>
