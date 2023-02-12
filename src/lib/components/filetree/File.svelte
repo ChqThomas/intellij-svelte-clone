@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { activeFileTreeItem, openedFile } from '../../stores/states.ts';
+	import { activeFileTreeItem, openedFiles } from '../../stores/states.ts';
 	import type { TreeItem } from '../../services/github.js';
 	import FileIcon from '../ui/FileIcon.svelte';
 
@@ -10,7 +10,7 @@
 	class="ml-4 w-full flex items-center gap-1"
 	class:active={$activeFileTreeItem === item.path}
 	on:click|preventDefault|stopPropagation={() => ($activeFileTreeItem = item.path)}
-	on:dblclick|preventDefault|stopPropagation={() => ($openedFile = item.path)}
+	on:dblclick|preventDefault|stopPropagation={() => openedFiles.open(item)}
 >
 	<FileIcon filename={item.path} />
 	{item.name}

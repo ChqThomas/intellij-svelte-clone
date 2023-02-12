@@ -14,6 +14,8 @@
 	<title>{import.meta.env.VITE_GITHUB_REPO}</title>
 </svelte:head>
 
+<svelte:window on:contextmenu|preventDefault={() => {}} />
+
 <QueryClientProvider client={data.queryClient}>
 	<slot />
 </QueryClientProvider>

@@ -1,9 +1,11 @@
 <script>
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
+	import { faFile } from '@fortawesome/free-regular-svg-icons/faFile';
 	export let filename = '';
 	let extension = /(?:\.([^.]+))?$/.exec(filename)[1];
 	const svgWhitelist = [
 		'eslint',
+		'env',
 		'html',
 		'js',
 		'json',
@@ -43,5 +45,5 @@
 {#if icon}
 	<img width="16px" height="16px" src="icons/{icon}.svg" alt={icon} />
 {:else}
-	<FontAwesomeIcon icon="far fa-file" />
+	<FontAwesomeIcon icon={faFile} />
 {/if}

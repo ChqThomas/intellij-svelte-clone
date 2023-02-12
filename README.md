@@ -15,10 +15,18 @@
   - [x] Open file on dblclick
   - [x] File icons
   - [x] Resizable
+  - [ ] Expand / Collapse all
+  - [ ] Select opened file
+  - [ ] Hide
 - Editor
   - [x] Load file content
   - [ ] Code Editor (readonly)
-  - [ ] Tabs
+  - [ ] Mardown preview
+  - Tabs
+    - [x] Open / Close
+    - [ ] Drag and drop
+    - [ ] Multiline
+    - [ ] Auto close
   - Image Editor
     - [x] Display centered Image
     - Toolbar

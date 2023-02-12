@@ -1,21 +1,30 @@
 <script>
-	import { createQuery } from '@tanstack/svelte-query';
 	import Folder from './Folder.svelte';
 	import { getFormattedTree } from '../../services/github';
+	import { openedFiles } from '../../stores/states';
+	import { onMount } from 'svelte';
 
-	const query = createQuery({
-		queryKey: ['repoData'],
-		queryFn: getFormattedTree,
-		retry: false
+	let loaded = false;
+	let error = false;
+	let tree = null;
+
+	onMount(async () => {
+		try {
+			tree = await getFormattedTree();
+			openedFiles.open(tree.find((item) => item.name === 'README.md'));
+			loaded = true;
+		} catch (e) {
+			error = true;
+		}
 	});
 </script>
 
 <div class="bg-g text-white p-2 h-full w-full select-none">
-	{#if $query.isLoading}
-		<p>Loading...</p>
-	{:else if $query.isError}
+	{#if error}
 		<p>Error while loading repository content</p>
-	{:else if $query.isSuccess}
-		<Folder opened={true} name={import.meta.env.VITE_GITHUB_REPO} items={$query.data} />
+	{:else if !loaded}
+		<p>Loading...</p>
+	{:else if tree}
+		<Folder opened={true} name={import.meta.env.VITE_GITHUB_REPO} items={tree} />
 	{/if}
 </div>
