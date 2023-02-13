@@ -3,6 +3,7 @@
 	import { getContent, getContentUrl } from '../../services/github';
 	import { openedFile } from '../../stores/states';
 	import Tabs from './Tabs.svelte';
+	import Highlight from './Highlight.svelte';
 
 	let query;
 	let image: string | null = null;
@@ -28,11 +29,9 @@
 	}
 </script>
 
-<div class="h-full text-white">
-	<div>
-		<Tabs />
-	</div>
-	<div class="h-full overflow-y-auto whitespace-pre p-2 ">
+<div class="flex flex-col h-full text-white">
+	<Tabs />
+	<div class="flex-1 overflow-y-auto whitespace-pre p-2">
 		{#if filetype === 'image'}
 			<div class="h-full flex items-center justify-center">
 				<img src={image} alt="" />
@@ -48,7 +47,9 @@
 						{@html $query.data}
 					</div>
 				{:else}
-					{$query.data}
+					{#key $openedFile}
+						<Highlight file={$openedFile} fileContent={$query.data} />
+					{/key}
 				{/if}
 			{/if}
 		{/if}

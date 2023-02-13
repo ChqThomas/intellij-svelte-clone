@@ -79,7 +79,7 @@
 	let grabber = true;
 </script>
 
-<div class="flex flex-col h-screen w-screen border-box overflow-hidden">
+<div class="flex flex-col h-screen w-screen border-box overflow-hidden select-none">
 	<TopBar />
 	<div class="flex flex-1 h-full bg-g min-h-0">
 		<LeftBar />
