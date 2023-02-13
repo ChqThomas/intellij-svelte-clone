@@ -1,49 +1,63 @@
 <script>
-	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-	import { faFile } from '@fortawesome/free-regular-svg-icons/faFile';
+	import Icon from '../ui/Icon.svelte';
+	import File from '$lib/images/icons/text_dark.svg?component';
+	import FileEnv from '$lib/images/icons/files/env.svg?component';
+	import FileEslint from '$lib/images/icons/files/eslint.svg?component';
+	import FileGitignore from '$lib/images/icons/files/gitignore.svg?component';
+	import FileHtml from '$lib/images/icons/files/html.svg?component';
+	import FileJs from '$lib/images/icons/files/js.svg?component';
+	import FileJson from '$lib/images/icons/files/json.svg?component';
+	import FileMd from '$lib/images/icons/files/md.svg?component';
+	import FileNpmrc from '$lib/images/icons/files/npmrc.svg?component';
+	import FilePng from '$lib/images/icons/files/png.svg?component';
+	import FilePostcss from '$lib/images/icons/files/postcss.svg?component';
+	import FilePrettier from '$lib/images/icons/files/prettier.svg?component';
+	import FileSvelte from '$lib/images/icons/files/svelte.svg?component';
+	import FileSvg from '$lib/images/icons/files/svg.svg?component';
+	import FileTailwindcss from '$lib/images/icons/files/tailwindcss.svg?component';
+	import FileTs from '$lib/images/icons/files/ts.svg?component';
+	import FileVite from '$lib/images/icons/files/vite.svg?component';
+
 	export let filename = '';
 	let extension = /(?:\.([^.]+))?$/.exec(filename)[1];
-	const svgWhitelist = [
-		'eslint',
-		'env',
-		'html',
-		'js',
-		'json',
-		'md',
-		'png',
-		'svg',
-		'npmrc',
-		'postcss',
-		'prettier',
-		'svelte',
-		'ts'
-	];
 
-	const specialIconMapping = {
-		'.eslintignore': 'eslint',
-		'.eslintrc.cjs': 'eslint',
-		'.gitignore': 'gitignore',
-		'.npmrc': 'npmrc',
-		'.prettierignore': 'prettier',
-		'.prettierrc': 'prettier',
-		'package-lock.json': 'npmrc',
-		'package.json': 'npmrc',
-		'postcss.config.cjs': 'postcss',
-		'svelte.config.cjs': 'svelte',
-		'tailwind.config.cjs': 'tailwindcss',
-		'tsconfig.json': 'ts',
-		'vite.config.ts': 'vite'
+	const extensionMapping = {
+		eslint: FileEslint,
+		env: FileEnv,
+		html: FileHtml,
+		js: FileJs,
+		json: FileJson,
+		md: FileMd,
+		png: FilePng,
+		svg: FileSvg,
+		npmrc: FileNpmrc,
+		postcss: FilePostcss,
+		prettier: FilePrettier,
+		svelte: FileSvelte,
+		ts: FileTs
 	};
 
-	let icon = svgWhitelist.includes(extension) ? extension : null;
+	const specialIconMapping = {
+		'.eslintignore': FileEslint,
+		'.eslintrc.cjs': FileEslint,
+		'.gitignore': FileGitignore,
+		'.npmrc': FileNpmrc,
+		'.prettierignore': FilePrettier,
+		'.prettierrc': FilePrettier,
+		'package-lock.json': FileNpmrc,
+		'package.json': FileNpmrc,
+		'postcss.config.cjs': FilePostcss,
+		'svelte.config.cjs': FileSvelte,
+		'tailwind.config.cjs': FileTailwindcss,
+		'tsconfig.json': FileTs,
+		'vite.config.ts': FileVite
+	};
 
-	if (specialIconMapping?.[filename]) {
-		icon = specialIconMapping[filename];
-	}
+	let icon = extensionMapping?.[extension] ?? specialIconMapping?.[filename] ?? null;
 </script>
 
 {#if icon}
-	<img width="16px" height="16px" src="icons/{icon}.svg" alt={icon} />
+	<svelte:component this={icon} width="16px" height="16px" />
 {:else}
-	<FontAwesomeIcon icon={faFile} />
+	<Icon icon={File} size="16px" />
 {/if}

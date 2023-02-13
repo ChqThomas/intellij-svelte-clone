@@ -1,28 +1,33 @@
 <script lang="ts">
 	import Icon from './Icon.svelte';
 	import Dropdown from './Dropdown.svelte';
-	import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
-	import { faBug } from '@fortawesome/free-solid-svg-icons/faBug';
-	import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
-	import { faCog } from '@fortawesome/free-solid-svg-icons/faCog';
-	import { faLanguage } from '@fortawesome/free-solid-svg-icons/faLanguage';
-	import { faWindowRestore } from '@fortawesome/free-regular-svg-icons/faWindowRestore';
-	import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
-	import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
+	import Search from '$lib/images/icons/search.svg?component';
+	import Settings from '$lib/images/icons/settings_dark.svg?component';
+	import Menu from '$lib/images/icons/windowsMenu_dark.svg?component';
+	import Vcs from '$lib/images/icons/vcs_dark.svg?component';
+	import Debug from '$lib/images/icons/debug_dark.svg?component';
+	import AddAcount from '$lib/images/icons/addAccount_dark.svg?component';
+	import Webstorm from '$lib/images/icons/WebStorm.svg?component';
+	import Minimize from '$lib/images/icons/minimize_dark.svg?component';
+	import Restore from '$lib/images/icons/restore_dark.svg?component';
+	import Close from '$lib/images/icons/close_dark.svg?component';
 </script>
 
 <header id="topbar" class="flex items-center h-[42px] bg-g border-b-2 border-lg box-content">
-	<Icon icon={faBars} />
+	<div class="px-3">
+		<Webstorm width="20px" />
+	</div>
+	<Icon icon={Menu} type="svg" />
 	<Dropdown text={import.meta.env.VITE_GITHUB_REPO} />
-	<Dropdown text="Version control" />
+	<Dropdown text="Version control" icon={Vcs} />
 	<div class="flex-1" />
-	<Icon icon={faBug} />
-	<Icon icon={faLanguage} />
-	<Icon icon={faSearch} />
-	<Icon icon={faCog} />
-	<Icon icon={faMinus} color="#aeaeae" />
-	<Icon icon={faWindowRestore} color="#aeaeae" />
-	<Icon icon={faXmark} color="#aeaeae" />
+	<Icon icon={Debug} type="svg" />
+	<Icon icon={AddAcount} type="svg" />
+	<Icon icon={Search} type="svg" />
+	<Icon icon={Settings} type="svg" />
+	<Icon icon={Minimize} type="svg" size="16px" fill="#aeaeae" />
+	<Icon icon={Restore} type="svg" size="16px" fill="#aeaeae" />
+	<Icon icon={Close} type="svg" size="16px" fill="#aeaeae" />
 </header>
 
 <style>

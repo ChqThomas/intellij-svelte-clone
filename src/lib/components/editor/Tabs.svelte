@@ -4,8 +4,8 @@
 	import { openedFile, openedFiles } from '../../stores/states';
 	import FileIcon from '../ui/FileIcon.svelte';
 	import { createQuery } from '@tanstack/svelte-query';
-	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-	import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
+	import Icon from '../ui/Icon.svelte';
+	import Close from '$lib/images/icons/close_dark.svg?component';
 
 	let query;
 	let image: string | null = null;
@@ -48,10 +48,10 @@
 				{item.name}
 			</span>
 			<span
-				class="opacity-0 icon text-[#80848a] rounded-full p-1 h-[16px] w-[16px] flex items-center justify-center"
+				class="opacity-0 icon text-[#80848a] rounded-full p-1 h-[18px] w-[18px] flex items-center justify-center"
 				on:click|preventDefault|stopPropagation={() => openedFiles.close(item)}
 			>
-				<FontAwesomeIcon icon={faXmark} size="xs" />
+				<Icon icon={Close} size="18px" />
 			</span>
 		</div>
 	{/each}

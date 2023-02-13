@@ -1,10 +1,10 @@
 <script lang="ts">
 	import File from './File.svelte';
-	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import { activeFileTreeItem } from '$stores/states.ts';
 	import type { TreeItem } from '../../services/github';
-	import { faAngleDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-	import { faFolder } from '@fortawesome/free-regular-svg-icons';
+	import Folder from '$lib/images/icons/folder_dark.svg?component';
+	import ChevronDown from '$lib/images/icons/chevronDown_dark.svg?component';
+	import ChevronRight from '$lib/images/icons/chevronRight_dark.svg?component';
 
 	export let name = '';
 	export let items: TreeItem[] = [];
@@ -20,19 +20,19 @@
 
 <div>
 	<div
-		class="w-full"
+		class="w-full flex items-center"
 		class:active={$activeFileTreeItem === name}
 		on:click|preventDefault|stopPropagation={() => ($activeFileTreeItem = name)}
 		on:dblclick|preventDefault|stopPropagation={() => (opened = !opened)}
 	>
-		<span class="mr-1" on:click|preventDefault|stopPropagation={() => (opened = !opened)}>
+		<span class="mr-1 mb-1" on:click|preventDefault|stopPropagation={() => (opened = !opened)}>
 			{#if opened}
-				<FontAwesomeIcon icon={faAngleDown} size="xs" />
+				<ChevronDown />
 			{:else}
-				<FontAwesomeIcon icon={faAngleRight} size="xs" />
+				<ChevronRight />
 			{/if}
 		</span>
-		<FontAwesomeIcon icon={faFolder} />
+		<Folder class="mr-1 mb-1" width="16px" height="16px" />
 		{name}
 	</div>
 	{#if opened}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { openedFile } from '../../stores/states';
 	import FileIcon from '../ui/FileIcon.svelte';
+	import ChevronRight from '$lib/images/icons/chevronRight_dark.svg?component';
 
 	$: path = [import.meta.env.VITE_GITHUB_REPO, ...$openedFile.split('/')];
 </script>
@@ -17,7 +18,9 @@
 			{item}
 		</span>
 		{#if i < path.length - 1}
-			<span class="px-1"> > </span>
+			<span class="px-1">
+				<ChevronRight />
+			</span>
 		{/if}
 	{/each}
 </div>
