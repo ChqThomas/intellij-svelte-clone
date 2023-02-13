@@ -13,13 +13,7 @@ const config = {
 			}
 		}
 	},
-
 	plugins: [],
-	safelist: [
-		{
-			pattern: /(bg|text|border)-(g|lg|dg)/
-		}
-	]
 };
 
 module.exports = config;

@@ -1,9 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="fonts-fallback">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
+		<link rel="preload" as="font" href="https://fonts.cdnfonts.com/s/19795/Inter-ExtraLight-BETA.woff" type="font/woff2" crossorigin>
+		<link rel="preload" as="font" href="https://fonts.cdnfonts.com/s/36131/JetbrainsMonoRegular-RpvmM.woff" type="font/woff2" crossorigin>
+		<script defer>
+			if (sessionStorage.fontsLoaded) {
+				document.documentElement.classList.add('fonts-loaded');
+				document.documentElement.classList.remove('fonts-fallback');
+			} else {
+				if ('fonts' in document) {
+					Promise.all([
+						document.fonts.load('200 14px Inter'),
+						document.fonts.load('400 14px jetbrains mono')
+					]).then(() => {
+						document.documentElement.classList.add('fonts-loaded');
+						document.documentElement.classList.remove('fonts-fallback');
+						sessionStorage.setItem('fontsLoaded', 'true');
+					});
+				}
+			}
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

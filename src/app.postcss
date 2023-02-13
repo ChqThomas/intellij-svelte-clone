@@ -1,12 +1,33 @@
-@import url('https://fonts.cdnfonts.com/css/jetbrains-mono?styles=60145');
-@import url('https://fonts.cdnfonts.com/css/inter?styles=29132');
+@font-face{
+    font-family:jetbrains mono;
+    font-style:normal;
+    font-weight:400;
+    src:local('JetBrains Mono'),url(https://fonts.cdnfonts.com/s/36131/JetbrainsMonoRegular-RpvmM.woff) format('woff');
+    font-display: swap;
+}
+@font-face{
+    font-family:inter;
+    font-style:normal;
+    font-weight:200;
+    src:local('Inter'),url(https://fonts.cdnfonts.com/s/19795/Inter-ExtraLight-BETA.woff) format('woff');
+    font-display: swap;
+}
 
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
+.fonts-fallback body {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: sans-serif;
+    letter-spacing: 0.4px;
+    word-spacing: -0.25px;
+    font-weight: 400;
+}
+
+.fonts-loaded body {
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 200;

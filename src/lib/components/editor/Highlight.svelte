@@ -19,7 +19,17 @@
 </div>
 
 <style>
-	.editor {
+	:global(.fonts-fallback body .editor) {
+		font-size: 14px;
+		line-height: 1.5;
+		font-family: 'Courier New';
+		letter-spacing: -0.2px;
+		word-spacing: 1.35px;
+		font-weight: 100;
+		visibility: visible;
+	}
+
+	:global(.fonts-loaded body .editor) {
 		font-family: 'JetBrains Mono', sans-serif;
 		font-size: 14px;
 	}

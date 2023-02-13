@@ -7,6 +7,7 @@ const languageMapping = {
 	cjs: 'javascript',
 	svelte: 'svelte',
 	json: 'json',
+	css: 'css',
 	postcss: 'css',
 	md: 'markdown'
 };
@@ -52,6 +53,9 @@ export async function loadHightlighter(extension: keyof typeof languageMapping) 
 				'markdown',
 				(await import(`highlight.js/lib/languages/markdown`)).default
 			);
+			break;
+		case 'xml':
+			hljs.registerLanguage('xml', (await import(`highlight.js/lib/languages/xml`)).default);
 			break;
 		default:
 			hljs.registerLanguage(

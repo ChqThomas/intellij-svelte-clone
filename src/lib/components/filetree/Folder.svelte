@@ -39,7 +39,7 @@
 		<div class="pl-3 ml-1 border-l-2 border-lg">
 			{#each items as item (item.path)}
 				{#if item.type === 'folder'}
-					<svelte:self opened={true} name={item.name} items={item.items} />
+					<svelte:self opened={false} name={item.name} items={item.items} />
 				{:else if item.type === 'file'}
 					<File {item} />
 				{/if}
