@@ -9,8 +9,8 @@
 <div
 	class="ml-4 w-full flex items-center gap-1"
 	class:active={$activeFileTreeItem === item.path}
-	on:click|preventDefault|stopPropagation={() => ($activeFileTreeItem = item.path)}
-	on:dblclick|preventDefault|stopPropagation={() => openedFiles.open(item)}
+	on:click|preventDefault={() => ($activeFileTreeItem = item.path)}
+	on:dblclick|preventDefault={() => openedFiles.open(item)}
 >
 	<FileIcon filename={item.path} />
 	{item.name}
@@ -18,6 +18,6 @@
 
 <style>
 	.active {
-		background: #4b6eaf;
+		@apply bg-lightblue-2;
 	}
 </style>

@@ -5,6 +5,8 @@
 	import Footer from './footer/Footer.svelte';
 	import Editor from './editor/Editor.svelte';
 	import FileTree from './filetree/FileTree.svelte';
+	import Terminal from './terminal/Terminal.svelte';
+	import { showTerminal, showProject } from '../stores/states';
 
 	let fileTreeWidth = 500;
 	function move(element) {
@@ -83,11 +85,25 @@
 	<TopBar />
 	<div class="flex flex-1 h-full bg-g min-h-0">
 		<LeftBar />
-		<div class="flex overflow-y-auto h-full" style="width: {fileTreeWidth}px" use:move use:resize>
-			<FileTree />
-		</div>
-		<div class="flex-1 h-full bg-dg">
-			<Editor />
+		<div class="flex flex-col flex-1 min-h-0">
+			<div class="flex flex-1 min-h-0">
+				{#if $showProject}
+					<div
+						class="flex overflow-y-auto h-full"
+						style="width: {fileTreeWidth}px"
+						use:move
+						use:resize
+					>
+						<FileTree />
+					</div>
+				{/if}
+				<div class="flex-1 h-full bg-dg">
+					<Editor />
+				</div>
+			</div>
+			{#if $showTerminal}
+				<Terminal />
+			{/if}
 		</div>
 		<RightBar />
 	</div>

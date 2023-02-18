@@ -16,6 +16,7 @@ export type TreeItem = {
 	path: string;
 	type: 'file' | 'folder';
 	items: TreeItem[];
+	opened: boolean;
 };
 
 export async function getTree(): Promise<GithubTreeItem[]> {
@@ -65,7 +66,9 @@ function insert(items: TreeItem[] = [], path: string, absolutePath: string) {
 	const [head, ...tail] = path.split('/');
 	let child = items.find((child) => child.name === head);
 	if (!child) {
-		items.push((child = { name: head, type: 'file', items: [], path: absolutePath }));
+		items.push(
+			(child = { name: head, type: 'file', items: [], path: absolutePath, opened: false })
+		);
 	}
 	if (tail.length > 0) {
 		child.type = 'folder';

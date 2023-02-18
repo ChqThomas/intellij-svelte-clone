@@ -8,7 +8,7 @@
 
 	export let name = '';
 	export let items: TreeItem[] = [];
-	export let opened = true;
+	export let opened = false;
 
 	items.sort(function (a, b) {
 		if (a.type < b.type) return 1;
@@ -22,8 +22,8 @@
 	<div
 		class="w-full flex items-center"
 		class:active={$activeFileTreeItem === name}
-		on:click|preventDefault|stopPropagation={() => ($activeFileTreeItem = name)}
-		on:dblclick|preventDefault|stopPropagation={() => (opened = !opened)}
+		on:click|preventDefault={() => ($activeFileTreeItem = name)}
+		on:dblclick|preventDefault={() => (opened = !opened)}
 	>
 		<span class="mr-1 mb-1" on:click|preventDefault|stopPropagation={() => (opened = !opened)}>
 			{#if opened}
@@ -36,10 +36,10 @@
 		{name}
 	</div>
 	{#if opened}
-		<div class="pl-3 ml-1 border-l-2 border-lg">
+		<div class="pl-3 ml-1 border-l-[1px] border-border-light">
 			{#each items as item (item.path)}
 				{#if item.type === 'folder'}
-					<svelte:self opened={false} name={item.name} items={item.items} />
+					<svelte:self bind:opened={item.opened} name={item.name} items={item.items} />
 				{:else if item.type === 'file'}
 					<File {item} />
 				{/if}
@@ -50,6 +50,6 @@
 
 <style>
 	.active {
-		background: #4b6eaf;
+		@apply bg-lightblue-2;
 	}
 </style>

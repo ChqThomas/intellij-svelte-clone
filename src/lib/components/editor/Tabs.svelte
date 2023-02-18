@@ -36,7 +36,7 @@
 	}
 </script>
 
-<div class="flex flex-row border-b-[1px] border-[#323232] h-[36px] select-none">
+<div class="flex flex-row border-b-[1px] border-border-dark h-[36px] select-none">
 	{#each $openedFiles as item}
 		<div
 			class="tab flex items-center gap-1 px-2 "
@@ -63,7 +63,7 @@
 	}
 
 	.tab:not(.active):hover {
-		@apply bg-[#1c1c1c];
+		@apply bg-editor-h;
 	}
 
 	.active .icon,
@@ -72,6 +72,10 @@
 	}
 
 	.icon:hover {
-		@apply opacity-100 bg-[#4c4d4e];
+		@apply opacity-100 bg-editor-hh;
+	}
+
+	.active .icon:hover {
+		@apply opacity-100 bg-editor-hah;
 	}
 </style>

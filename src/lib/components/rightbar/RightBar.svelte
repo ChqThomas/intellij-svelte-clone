@@ -1,4 +1,16 @@
-<div id="right-bar" class="h-full w-[32px] border-l-2 border-lg box-content" />
+<script lang="ts">
+	import Icon from '../ui/Icon.svelte';
+	import Notification from '$lib/images/icons/notifications_dark.svg?component';
+</script>
+
+<div
+	id="right-bar"
+	class="h-full w-[40px] border-l-[1px] border-border-dark box-content flex justify-center"
+>
+	<div class="p-2">
+		<Icon icon={Notification} />
+	</div>
+</div>
 
 <style>
 	#right-bar {

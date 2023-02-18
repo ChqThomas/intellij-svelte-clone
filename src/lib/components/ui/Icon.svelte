@@ -4,4 +4,10 @@
 	export let size = '20px';
 </script>
 
-<svelte:component this={icon} width={size} height={size} style="color: {color};" />
+<svelte:component
+	this={icon}
+	width={size}
+	height={size}
+	style="color: {color};"
+	class={$$props.class}
+/>

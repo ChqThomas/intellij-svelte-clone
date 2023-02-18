@@ -9,7 +9,7 @@
 <div id="breadcrumb" class="flex items-center h-[32px] px-2">
 	<span class="blue-square" />
 	{#each path as item, i}
-		<span class="flex items-center gap-1 hover:text-white hover:bg-[#4c5052] px-1">
+		<span class="flex items-center gap-1 hover:text-white hover:bg-g-h px-1">
 			{#if i === path.length - 1}
 				{#key $openedFile}
 					<FileIcon filename={$openedFile} />

@@ -4,6 +4,6 @@
 	export let size = '20px';
 </script>
 
-<div class="flex items-center justify-center w-[32px] h-[32px] hover:bg-[#4c5052]">
+<div class="flex items-center justify-center w-[42px] h-full hover:bg-g-h">
 	<Icon {icon} {size} />
 </div>
